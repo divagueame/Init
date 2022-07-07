@@ -1,0 +1,18 @@
+<% dragActions = "  dragstart->drag#dragStart 
+                    dragover->drag#dragOver
+                    dragenter->drag#dragEnter
+                    drop->drag#drop
+                    dragend->drag#dragEnd" %>
+
+<%= content_tag :div,
+    class: "icon draggable",
+    draggable: true,
+    data: {
+        controller: "drag",
+        action: dragActions,
+        resource_id: note.id,
+        url: "drag/note",
+        parent: "notes"
+    } do %>
+        <%= render note %>
+<% end %>
