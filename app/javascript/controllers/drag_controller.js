@@ -28,6 +28,14 @@ export default class extends Controller {
   }
   drop(e) {
     e.preventDefault()
+    let parentId = e.target.getAttribute(dataParent);
+    const dropTarget = this.findDropTarget(e.target, parentId)
+    const draggedItem = document.querySelector(`[data-resource-id="${resourceId}"]`)
+    if (draggedItem === null || dropTarget === null) {
+      return true
+    }
+    this.setNewPosition(dropTarget, draggedItem, e);
+    newPosition = [...this.element.parentElement.children].indexOf(draggedItem)
   }
   dragEnd(e) {
     e.preventDefault()
@@ -40,5 +48,27 @@ export default class extends Controller {
   dragEnter(e) {
     e.preventDefault()
   }
+
+
+  findDropTarget(target, parentId) {
+    if (target === null) {
+      return null
+    }
+    if (target.id === parentId){
+      return null
+    }
+    if (target.classList.contains("draggable")) {
+      return target
+    }
+    return this.findDropTarget(target.parentElement, parentId)
+  }
   
+  setNewPosition(dropTarget, draggedItem) {
+    const positionComparison = dropTarget.compareDocumentPosition(draggedItem)
+    if (positionComparison && Node.DOCUMENT_POSITION_FOLLOWING) {
+      dropTarget.insertAdjacentElement('beforebegin', draggedItem)
+    } else if (positionComparison && Node.DOCUMENT_POSITION_PRECEDING){
+      dropTarget.insertAdjacentElement('afterend', draggedItem)
+    }
+  }
 }
