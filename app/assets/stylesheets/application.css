@@ -45,20 +45,31 @@
     padding-left: 2%;
     padding-right: 2%;
 }
-.notes h1 {
+#notes {
+    border-radius: 10px;
+}
+#notes.active {
+    background-color:  rgba(250, 235, 215, 1);
+    outline: 2px dashed goldenrod
+}
+h1 {
     font-weight: bold;
     color: white;
     color: rgb(0, 0, 0);
-    text-shadow: -2px 2px 0px rgb(255, 255, 255);
-    text-shadow: -2px 2px 0px rgb(255, 108, 108);
     text-shadow: -2px 2px 0px rgb(108, 147, 255);
-    font-size: 6rem;
-    /* text-decoration: underline; */
+    font-size: clamp(3rem, 10vw,6rem);
 }
 
 .note {
     padding: 5px 10px;
     border-radius: 10px;
-    margin: 10px 0;
     font-size: 20px;
+    margin: 0;
+}
+.note p {
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+.note p:hover {
+    background-color: rgb(240, 206, 162);
 }

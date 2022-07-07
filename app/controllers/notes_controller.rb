@@ -5,7 +5,7 @@ class NotesController < ApplicationController
   def index
     @admin = true
     # @admin = false
-    @notes = Note.all
+    @notes = Note.all.order(position: :asc)
   end
 
   # GET /notes/1 or /notes/1.json
