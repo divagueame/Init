@@ -1,0 +1,64 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ * {
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+ }
+ html {
+    background-color: antiquewhite;
+ }
+.container {
+    max-width: 80%;
+    display: block;
+    margin: 0 auto;
+    padding: 0 10px
+}
+.center {
+    width: 100%;
+}
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.flex-start {
+    justify-content: flex-start;
+}
+.wide-box {
+    padding: 2.5% 0;
+}
+.padding {
+    padding-left: 2%;
+    padding-right: 2%;
+}
+.notes h1 {
+    font-weight: bold;
+    color: white;
+    color: rgb(0, 0, 0);
+    text-shadow: -2px 2px 0px rgb(255, 255, 255);
+    text-shadow: -2px 2px 0px rgb(255, 108, 108);
+    text-shadow: -2px 2px 0px rgb(108, 147, 255);
+    font-size: 6rem;
+    /* text-decoration: underline; */
+}
+
+.note {
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin: 10px 0;
+    font-size: 20px;
+}

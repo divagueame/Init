@@ -1,0 +1,20 @@
+ADMIN
+<p style="color: green"><%= notice %></p>
+<div class="container wide-box notes">
+  <h1 class="flex">Notes</h1>
+
+  <div id="notes" class="padding">
+    <% @notes.each do |note| %>
+    <div class="note">
+      <% if @admin do %>
+        <%= render 'notes/draggable', note: note %>
+      <% else %>
+        <%= render note %>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+
+
+</div>
+
