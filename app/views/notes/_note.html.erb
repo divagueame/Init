@@ -1,5 +1,6 @@
 <div id="<%= dom_id note %>" class="note">
-  <p>
-    <%= note.name %>
-  </p>
+  <div class="wrapper">
+    <%= image_tag note.kitty_pic.variant(:thumb) %>
+    <h2><%= note.name %></h2>
+  </div>
 </div>

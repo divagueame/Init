@@ -66,10 +66,25 @@ h1 {
     font-size: 20px;
     margin: 0;
 }
-.note p {
+.note .wrapper {
     padding: 5px 10px;
     border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
-.note p:hover {
+.note .wrapper h2 {
+    flex-basis: 100%;
+    text-align: center;
+}
+.note .wrapper img {}
+
+.note .wrapper:hover {
     background-color: rgb(240, 206, 162);
+}
+.note .wrapper img {
+    border-radius: 100%;
+    min-width: 100px;
+    max-height: 100%;
 }
