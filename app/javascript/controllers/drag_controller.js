@@ -15,12 +15,16 @@ let resourceId;
 // New position
 let newPosition; 
 
-function showDragActive() {
-  console.log('show')
+let isDragging = false;
+
+function showDragActive(e) {
+  isDragging = true;
+  // console.log('show', e.target.dataset.resourceId)
   document.querySelector("#notes").classList.add('active')
 }
 function hideDragActive() {
-  console.log('hide')
+  isDragging = false;
+  // console.log('hide')
   document.querySelector("#notes").classList.remove('active')
   
 }
@@ -30,15 +34,20 @@ export default class extends Controller {
   connect() { }
   
   dragStart(e) {
-    showDragActive()
-    resourceId = e.target.getAttribute(dataResourceId)
-    url = e.target.getAttribute('data-url')
+ 
+    showDragActive(e)
+    console.log('e.currentTarget')
+    console.log(e.currentTarget) 
+    e.currentTarget.classList.add('dragging');
+    resourceId = e.currentTarget.getAttribute(dataResourceId)
+    url = e.currentTarget.getAttribute('data-url')
     e.dataTransfer.effectAllowed = 'move';
+ 
   }
   drop(e) {
     e.preventDefault()
     hideDragActive()
-    let parentId = e.target.getAttribute(dataParent);
+    let parentId = e.currentTarget.getAttribute(dataParent);
     const dropTarget = this.findDropTarget(e.target, parentId)
     const draggedItem = document.querySelector(`[data-resource-id="${resourceId}"]`)
     if (draggedItem === null || dropTarget === null) {
@@ -79,6 +88,9 @@ export default class extends Controller {
     return true; 
   }
   dragEnter(e) {
+    console.log('Drag enter')
+    console.log(e.target)
+    // console.log(this)
     e.preventDefault()
   }
 
@@ -110,5 +122,15 @@ export default class extends Controller {
   getMetaValue(name) {
     const el = document.head.querySelector(`meta[name="${name}"]`);
     return el.getAttribute("content")
-  }
+  } 
 }
+
+document.querySelectorAll('.note').forEach(item => {
+  item.addEventListener('mouseenter', e => {
+    // if (!isDragging) { return false };
+  // console.log(e.target)
+  })
+})
+
+ 
+ 

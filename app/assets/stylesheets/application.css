@@ -59,32 +59,65 @@ h1 {
     text-shadow: -2px 2px 0px rgb(108, 147, 255);
     font-size: clamp(3rem, 10vw,6rem);
 }
-
+.dragging .wrapper{
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px; */
+}
 .note {
+    cursor: grab;
     padding: 5px 10px;
     border-radius: 10px;
     font-size: 20px;
     margin: 0;
 }
 .note .wrapper {
+    margin-bottom: 45px;
     padding: 5px 10px;
     border-radius: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
+    position: relative;
+    text-align: center; 
 }
 .note .wrapper h2 {
-    flex-basis: 100%;
-    text-align: center;
+    position: absolute;
+    height: min-content;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%); 
+    text-align: center; 
+    padding: 0 4vw;
 }
-.note .wrapper img {}
+.note .wrapper h2.front { 
+    z-index: 1;
+    background-color: white;
+    color: white;
+    border-radius: 10px; 
+}
+.note .wrapper h2.back { 
+        z-index: 3;
+}
+ 
 
 .note .wrapper:hover {
-    background-color: rgb(240, 206, 162);
+    /* background-color: rgb(240, 206, 162); */
+    background-color: rgb(255, 240, 220);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
 }
 .note .wrapper img {
     border-radius: 100%;
     min-width: 100px;
     max-height: 100%;
+    z-index: 2;
+    position: relative;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+}
+.done-btn {
+    position: fixed;
+    top: 2;
+    right: 0;
+    text-align: center;
+    width: max-content;
+    width: fit-content;
+}
+.done-btn img {
+    max-width: 30px;
 }
