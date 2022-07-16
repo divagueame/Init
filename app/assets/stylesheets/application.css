@@ -62,9 +62,36 @@ h1 {
     text-shadow: -2px 2px 0px rgb(108, 147, 255);
     font-size: clamp(3rem, 10vw,6rem);
 }
-.dragging .wrapper{
+.dragging {
+    /* background-color: black; */
+
+}
+.dragging .spacer {
+    /* opacity: 0; */
+}
+.dragging * {
+    /* opacity: .53; transition: all ease 500ms; */
     /* box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px; */
 }
+.dragging img{
+    /* opacity: 1; */
+    /* opacity: .33; transition: all ease 500ms; */
+    /* transform: translateX(100%) scale(1.15); */
+}
+/* .draggable { 
+    transition: all ease 500ms;
+}
+.active .draggable  { 
+    transform: translateX(-50%) scale(.75);
+}
+.active .draggable.hover-active.dragging {
+    transform: translateX(0%) scale(1.95);
+    
+}
+.active .draggable { 
+    transform: scale(.95);
+} */
+.active 
 .note {
     cursor: grab;
     padding: 5px 10px;
@@ -100,9 +127,8 @@ h1 {
 }
  
 
-.note .wrapper:hover {
-    /* background-color: rgb(240, 206, 162); */
-    background-color: rgb(255, 240, 220);
+.note h2:hover {
+    /* background-color: rgb(255, 240, 220); */
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
 }
 .note .wrapper img {
@@ -173,4 +199,24 @@ h1 {
 
 .done-btn img {
     max-width: 30px;
+}
+.draggable .hover-active { 
+    background-color: burlywood;
+}
+.spacer {
+    height: 1px;
+    background-color: rgb(255, 60, 0);
+    opacity: .4;
+    border: none;
+    width: 35%;
+    margin: 0 auto;
+    transition: 120ms ease-in-out;
+}
+.hover-active .spacer { 
+    width: 100%;
+    transition: 120ms ease-in-out;
+    background-color: rgb(189, 173, 168);
+}
+.draggable:last-child .spacer {
+    display: none
 }

@@ -18,36 +18,40 @@ let newPosition;
 let isDragging = false;
 
 function showDragActive(e) {
-
+  Array.from(document.querySelectorAll('.hover-active')).forEach((el) => el.classList.remove('hover-active'));
+  e.currentTarget.classList.add('hover-active');
+  
   // console.log('show', e.target.dataset.resourceId)
   document.querySelector("#notes").classList.add('active')
 }
 function hideDragActive() {
- 
-  // console.log('hide')
+  Array.from(document.querySelectorAll('.dragging')).forEach((el) => el.classList.remove('dragging'));
   document.querySelector("#notes").classList.remove('active')
-  
 }
 
 // Connects to data-controller="drag"
-export default class extends Controller {
+export default class extends Controller {  disconnect(){
+    console.log('disconnect - Element removed from DOM')
+  }
   connect() { }
   
   dragStart(e) {
    isDragging = true;
     showDragActive(e)
-    console.log('e.currentTarget')
-    console.log(e.currentTarget) 
+    // console.log('e.currentTarget')
+    // console.log(e.currentTarget) 
     e.currentTarget.classList.add('dragging');
     resourceId = e.currentTarget.getAttribute(dataResourceId)
     url = e.currentTarget.getAttribute('data-url')
     e.dataTransfer.effectAllowed = 'move';
- 
+    
   }
   drop(e) {
-    isDragging = false;
-    e.preventDefault()
-    hideDragActive()
+    isDragging = false; 
+    e.preventDefault(); 
+    hideDragActive();
+
+    Array.from(document.querySelectorAll('.hover-active')).forEach((el) => el.classList.remove('hover-active'));
     let parentId = e.currentTarget.getAttribute(dataParent);
     const dropTarget = this.findDropTarget(e.target, parentId)
     const draggedItem = document.querySelector(`[data-resource-id="${resourceId}"]`)
@@ -59,9 +63,11 @@ export default class extends Controller {
     this.setNewPosition(dropTarget, draggedItem, e);
     newPosition = [...this.element.parentElement.children].indexOf(draggedItem)
   }
+  
   dragEnd(e) {
-    isDragging = false;
     e.preventDefault()
+    Array.from(document.querySelectorAll('.dragging')).forEach((el) => el.classList.remove('dragging'));
+    isDragging = false; 
     if (resourceId === null && newPosition === null) {
 
       console.log('Drop end', resourceId)
@@ -91,9 +97,8 @@ export default class extends Controller {
   }
 
   dragEnter(e) {
-    console.log('Drag enter')
-    console.log(e.currentTarget.dataset.resourceId)
-    // console.log(this)
+    console.log('Drag enter', e.currentTarget); 
+    showDragActive(e) 
     e.preventDefault()
   }
 
@@ -110,7 +115,7 @@ export default class extends Controller {
     }
     return this.findDropTarget(target.parentElement, parentId)
   }
-
+  
   setNewPosition(dropTarget, draggedItem) {
     const positionComparison = dropTarget.compareDocumentPosition(draggedItem)
     if (positionComparison & Node.DOCUMENT_POSITION_FOLLOWING) {
@@ -121,18 +126,21 @@ export default class extends Controller {
       dropTarget.insertAdjacentElement('afterend', draggedItem)
     }
   }
-
+  
   getMetaValue(name) {
     const el = document.head.querySelector(`meta[name="${name}"]`);
     return el.getAttribute("content")
   } 
 }
 
-document.querySelectorAll('.note').forEach(item => {
-  item.addEventListener('mouseenter', e => {
-    // if (!isDragging) { return false };
-  // console.log(e.target)
-  })
-})
+// document.querySelectorAll('.note').forEach(item => {
+//   item.addEventListener('mouseenter', e => {
+//     if (!isDragging) { return false };
+//   console.log(e.currentTarget)
+//   })
+// })
 
   
+// function getPosition(el) {
+//   document.querySelectorAll('.note')
+// }
