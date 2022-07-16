@@ -18,12 +18,12 @@ let newPosition;
 let isDragging = false;
 
 function showDragActive(e) {
-  isDragging = true;
+
   // console.log('show', e.target.dataset.resourceId)
   document.querySelector("#notes").classList.add('active')
 }
 function hideDragActive() {
-  isDragging = false;
+ 
   // console.log('hide')
   document.querySelector("#notes").classList.remove('active')
   
@@ -34,7 +34,7 @@ export default class extends Controller {
   connect() { }
   
   dragStart(e) {
- 
+   isDragging = true;
     showDragActive(e)
     console.log('e.currentTarget')
     console.log(e.currentTarget) 
@@ -45,6 +45,7 @@ export default class extends Controller {
  
   }
   drop(e) {
+    isDragging = false;
     e.preventDefault()
     hideDragActive()
     let parentId = e.currentTarget.getAttribute(dataParent);
@@ -59,6 +60,7 @@ export default class extends Controller {
     newPosition = [...this.element.parentElement.children].indexOf(draggedItem)
   }
   dragEnd(e) {
+    isDragging = false;
     e.preventDefault()
     if (resourceId === null && newPosition === null) {
 
@@ -87,9 +89,10 @@ export default class extends Controller {
     e.preventDefault()
     return true; 
   }
+
   dragEnter(e) {
     console.log('Drag enter')
-    console.log(e.target)
+    console.log(e.currentTarget.dataset.resourceId)
     // console.log(this)
     e.preventDefault()
   }
@@ -132,5 +135,4 @@ document.querySelectorAll('.note').forEach(item => {
   })
 })
 
- 
- 
+  

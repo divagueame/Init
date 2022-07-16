@@ -27,6 +27,9 @@
     margin: 0 auto;
     padding: 0 10px
 }
+.relative {
+    position: relative;
+}
 .center {
     width: 100%;
 }
@@ -112,12 +115,62 @@ h1 {
 }
 .done-btn {
     position: fixed;
-    top: 2;
-    right: 0;
+    top: 20px;
+    right: 20px;
     text-align: center;
-    width: max-content;
+    /* width: max-content; */
     width: fit-content;
 }
+.done-btn h3::after {
+    position: absolute;
+    content: '';
+    top: 0px;
+    bottom: 0px;
+    border-radius: 5px;
+    /* width: 100%;  */
+    background-color: rgb(255, 145, 0);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+    left: -10px;
+    right: -10px;
+    z-index: -1;
+}
+.done-btn h3 {
+    top: -10px;
+    position: relative;
+    color: rgb(254, 255, 253);
+    font-weight: normal;
+}
+.done-btn h5 {
+    border-radius: 5px;
+    color: rgb(254, 255, 253);
+    font-weight: normal;
+    position: absolute;
+    background-color: rgb(255, 145, 0,1);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+    top: calc(100% - 16px);
+    overflow: hidden;
+    z-index: -1;
+    padding: 12px 0;
+    left: -10px; 
+    right: -10px; 
+    display: none;
+}
+
+.done-btn .relative {
+    /* overflow: hidden; */
+    /* height: 100px; */
+}
+.done-btn:hover { cursor:pointer; 
+    /* background-color: rgb(206, 206, 24);    */
+} 
+.done-btn:hover h5 {
+    /* top: 0; */
+    /* height: 0; */
+    display: block;
+    transition: all 200ms ease;
+}
+
+
 .done-btn img {
     max-width: 30px;
 }
