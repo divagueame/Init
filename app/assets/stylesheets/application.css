@@ -47,9 +47,13 @@
 .padding {
     padding-left: 2%;
     padding-right: 2%;
+    padding: 6% 2%;
 }
 #notes {
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 80px
 }
 #notes.active {
     background-color:  rgba(250, 235, 215, 1);
@@ -62,21 +66,22 @@ h1 {
     text-shadow: -2px 2px 0px rgb(108, 147, 255);
     font-size: clamp(3rem, 10vw,6rem);
 }
-.dragging {
-    /* background-color: black; */
+
+.dragging img {
+    background-color: black;
+    outline: 2px solid rgba(255, 174, 0, 0.712);
 
 }
-.dragging .spacer {
-    /* opacity: 0; */
-}
+
 .dragging * {
     /* opacity: .53; transition: all ease 500ms; */
     /* box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px; */
 }
 .dragging img{
     /* opacity: 1; */
-    /* opacity: .33; transition: all ease 500ms; */
-    /* transform: translateX(100%) scale(1.15); */
+    /* opacity: .33; */
+    /* transition: all ease 500ms;
+    transform: translateY(10%) scale(1.15); */
 }
 /* .draggable { 
     transition: all ease 500ms;
@@ -84,26 +89,29 @@ h1 {
 .active .draggable  { 
     transform: translateX(-50%) scale(.75);
 }
-.active .draggable.hover-active.dragging {
-    transform: translateX(0%) scale(1.95);
-    
-}
 .active .draggable { 
     transform: scale(.95);
 } */
+/* .active .draggable.hover-active {
+ background-color: antiquewhite;
+    
+} */
 .active 
 .note {
-    cursor: grab;
-    padding: 5px 10px;
+    cursor: grab; 
     border-radius: 10px;
     font-size: 20px;
     margin: 0;
 }
 .note .wrapper {
     margin-bottom: 45px;
-    padding: 5px 10px;
+    margin-bottom: 0px;
+    padding: 0px 10px;
     border-radius: 10px;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
     text-align: center; 
 }
@@ -186,7 +194,13 @@ h1 {
     /* overflow: hidden; */
     /* height: 100px; */
 }
-.done-btn:hover { cursor:pointer; 
+.icon {
+    cursor: grab;
+    width: 40%;
+    margin: 0 auto
+}
+.done-btn:hover { 
+    cursor:pointer; 
     /* background-color: rgb(206, 206, 24);    */
 } 
 .done-btn:hover h5 {
@@ -205,18 +219,23 @@ h1 {
 }
 .spacer {
     height: 1px;
-    background-color: rgb(255, 60, 0);
     opacity: .4;
     border: none;
-    width: 35%;
+    width: 40%;
     margin: 0 auto;
     transition: 120ms ease-in-out;
+    position: absolute;
+    bottom: -50px;
+    background-color: rgb(189, 173, 168);
 }
 .hover-active .spacer { 
-    width: 100%;
+    background-color: rgb(255, 60, 0);
+    width: 200%;
     transition: 120ms ease-in-out;
-    background-color: rgb(189, 173, 168);
 }
 .draggable:last-child .spacer {
     display: none
+}
+.dragging .spacer {
+    opacity: .5;
 }
