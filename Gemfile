@@ -72,3 +72,4 @@ group :test do
 end
 
 gem 'acts_as_list', '~> 1.0'
+gem 'aws-sdk-s3', require: false
